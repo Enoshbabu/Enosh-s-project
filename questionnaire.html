@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPL Identification Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h2 {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="radio"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BPL Identification Questionnaire</h2>
+        <form action="submit.php" method="POST">
+            <div class="form-group">
+                <h3>1. Demographic Information:</h3>
+                <label for="name">Name (optional):</label>
+                <input type="text" id="name" name="name">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                <label>Gender:</label>
+                <input type="radio" id="gender_male" name="gender" value="male">
+                <label for="gender_male">Male</label>
+                <input type="radio" id="gender_female" name="gender" value="female">
+                <label for="gender_female">Female</label>
+                <input type="radio" id="gender_other" name="gender" value="other">
+                <label for="gender_other">Other</label>
+                <label for="family_members">Number of family members:</label>
+                <input type="number" id="family_members" name="family_members" required>
+            </div>
+            <div class="form-group">
+                <h3>2. Economic Status:</h3>
+                <label for="primary_income">Primary source of income:</label>
+                <input type="text" id="primary_income" name="primary_income" required>
+                <label for="avg_monthly_income">Average monthly household income:</label>
+                <input type="number" id="avg_monthly_income" name="avg_monthly_income" required>
+                <label>Do you have any secondary sources of income?</label>
+                <input type="radio" id="secondary_income_yes" name="secondary_income" value="yes">
+                <label for="secondary_income_yes">Yes</label>
+                <input type="radio" id="secondary_income_no" name="secondary_income" value="no">
+                <label for="secondary_income_no">No</label>
+            </div>
+            <div class="form-group">
+                <h3>3. Employment:</h3>
+                <label>Are you currently employed?</label>
+                <input type="radio" id="employed_yes" name="employed" value="yes">
+                <label for="employed_yes">Yes</label>
+                <input type="radio" id="employed_no" name="employed" value="no">
+                <label for="employed_no">No</label>
+                <div id="occupation_field" style="display: none;">
+                    <label for="occupation">Occupation:</label>
+                    <input type="text" id="occupation" name="occupation">
+                </div>
+                <div id="barriers_field" style="display: none;">
+                    <label for="barriers">Main barriers to employment:</label>
+                    <textarea id="barriers" name="barriers"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>4. Housing and Amenities:</h3>
+                <label for="living_conditions">Describe your living conditions:</label>
+                <textarea id="living_conditions" name="living_conditions"></textarea>
+                <label>Do you have access to clean drinking water and sanitation facilities?</label>
+                <input type="radio" id="clean_water_yes" name="clean_water" value="yes">
+                <label for="clean_water_yes">Yes</label>
+                <input type="radio" id="clean_water_no" name="clean_water" value="no">
+                <label for="clean_water_no">No</label>
+                <label for="fuel_type">What type of fuel do you use for cooking?</label>
+                <input type="text" id="fuel_type" name="fuel_type">
+            </div>
+            <div class="form-group">
+                <h3>5. Healthcare:</h3>
+                <label>How often do you visit a healthcare facility?</label>
+                <input type="text" id="healthcare_visits" name="healthcare_visits">
+                <label>Are there any healthcare facilities available in your locality?</label>
+                <input type="text" id="healthcare_facilities" name="healthcare_facilities">
+                <label>Do you have any health insurance or benefit from any government health schemes?</label>
+                <input type="radio" id="health_insurance_yes" name="health_insurance" value="yes">
+                <label for="health_insurance_yes">Yes</label>
+                <input type="radio" id="health_insurance_no" name="health_insurance" value="no">
+                <label for="health_insurance_no">No</label>
+            </div>
+            <div class="form-group">
+                <h3>6. Education:</h3>
+                <label>Highest level of education completed by the head of the household:</label>
+                <input type="text" id="education_level" name="education_level">
+                <label>Are children in the household attending school regularly?</label>
+                <input type="radio" id="children_attending_yes" name="children_attending" value="yes">
+                <label for="children_attending_yes">Yes</label>
+                <input type="radio" id="children_attending_no" name="children_attending" value="no">
+                <label for="children_attending_no">No</label>
+                <label>Challenges faced in accessing education:</label>
+                <textarea id="education_challenges" name="education_challenges"></textarea>
+            </div>
+            <div class="form-group">
+                <h3>7. Awareness and Access to Government Schemes:</h3>
+                <label>Are you aware of any government welfare schemes for BPL families?</label>
+                <input type="radio" id="awareness_yes" name="awareness" value="yes">
+                <label for="awareness_yes">Yes</label>
+                <input type="radio" id="awareness_no" name="awareness" value="no">
+                <label for="awareness_no">No</label>
+                <label>If yes, have you benefited from any such schemes? If yes, which ones?</label>
+                <textarea id="benefited_schemes" name="benefited_schemes"></textarea>
+            </div>
+            <div class="form-group">
+                <h3>8. Food Security:</h3>
+                <label>Do you have sufficient food throughout the year?</label>
+                <input type="radio" id="food_sufficient_yes" name="food_sufficient" value="yes">
+                <label for="food_sufficient_yes">Yes</label>
+                <input type="radio" id="food_sufficient_no" name="food_sufficient" value="no">
+                <label for="food_sufficient_no">No</label>
+                <label>How do you cope with food shortages, if any?</label>
+                <textarea id="food_coping" name="food_coping"></textarea>
+            </div>
+            <div class="form-group">
+                <h3>9. Suggestions and Concerns:</h3>
+                <label>What changes would most improve your living conditions?</label>
+                <textarea id="improvements" name="improvements"></textarea>
+                <label>Do you have any suggestions for the government to better assist BPL families?</label>
+                <textarea id="government_suggestions" name="government_suggestions"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Survey</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
